@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Apache Spark - TTT Interview Management</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            background: #f4f7fb;
+            font-family: Arial, sans-serif;
+        }
+
+        .top-header {
+            height: 75px;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            padding: 0 25px;
+        }
+
+        .top-logo {
+            width: 52px;
+            height: 52px;
+            object-fit: contain;
+            margin-right: 14px;
+        }
+
+        .top-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 45px 30px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #6b7280;
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .page-description {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .topic-title {
+            font-size: 21px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .topic-description {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header class="top-header">
+
+        <img
+            src="{{ url_for('static', filename='ttt.jpeg') }}"
+            alt="TTT Logo"
+            class="top-logo"
+        >
+
+        <div class="top-title">
+            TTT INTERVIEW MANAGEMENT
+        </div>
+
+    </header>
+
+
+    <main class="main-content">
+
+        <a href="/subjects" class="back-btn">
+            ← Back to Subjects
+        </a>
+
+        <h1 class="page-title">
+            ⚡ Apache Spark
+        </h1>
+
+        <p class="page-description">
+            Apache Spark topics that Data Engineering students should learn.
+        </p>
+
+
+        <div class="topic-card">
+
+            <div class="topic-title">
+                1. Spark Basics
+            </div>
+
+            <div class="topic-description">
+
+                <strong>Students should learn:</strong>
+
+                <ul>
+                    <li>What is Apache Spark?</li>
+                    <li>Why Spark is used in Data Engineering</li>
+                    <li>Spark architecture basics</li>
+                    <li>Driver and Executors</li>
+                    <li>Spark Cluster basics</li>
+                    <li>SparkSession</li>
+                    <li>SparkContext basics</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic-card">
+
+            <div class="topic-title">
+                2. RDD
+            </div>
+
+            <div class="topic-description">
+
+                <strong>Students should learn:</strong>
+
+                <ul>
+                    <li>What is RDD?</li>
+                    <li>RDD characteristics</li>
+                    <li>Creating RDDs</li>
+                    <li>RDD transformations</li>
+                    <li>RDD actions</li>
+                    <li>Lazy evaluation</li>
+                    <li>RDD persistence and caching</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic-card">
+
+            <div class="topic-title">
+                3. DataFrames & Spark SQL
+            </div>
+
+            <div class="topic-description">
+
+                <strong>Students should learn:</strong>
+
+                <ul>
+                    <li>What is a DataFrame?</li>
+                    <li>Creating DataFrames</li>
+                    <li>DataFrame schema</li>
+                    <li>Select and filter operations</li>
+                    <li>GroupBy and aggregation</li>
+                    <li>Joining DataFrames</li>
+                    <li>Spark SQL</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic-card">
+
+            <div class="topic-title">
+                4. Transformations & Actions
+            </div>
+
+            <div class="topic-description">
+
+                <strong>Students should learn:</strong>
+
+                <ul>
+                    <li>Transformations vs actions</li>
+                    <li>map()</li>
+                    <li>filter()</li>
+                    <li>flatMap()</li>
+                    <li>reduce()</li>
+                    <li>collect()</li>
+                    <li>count()</li>
+                    <li>Lazy evaluation</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic-card">
+
+            <div class="topic-title">
+                5. Spark Performance
+            </div>
+
+            <div class="topic-description">
+
+                <strong>Students should learn:</strong>
+
+                <ul>
+                    <li>Partitions</li>
+                    <li>Repartition and coalesce</li>
+                    <li>Shuffle</li>
+                    <li>Broadcast variables</li>
+                    <li>Caching and persistence</li>
+                    <li>Data skew basics</li>
+                    <li>Performance optimization basics</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="topic-card">
+
+            <div class="topic-title">
+                6. Spark for Data Engineering
+            </div>
+
+            <div class="topic-description">
+
+                <strong>Students should learn:</strong>
+
+                <ul>
+                    <li>Reading CSV, JSON and Parquet files</li>
+                    <li>Writing DataFrames to storage</li>
+                    <li>ETL using Spark</li>
+                    <li>Data cleaning using Spark</li>
+                    <li>Handling large datasets</li>
+                    <li>Spark with cloud storage</li>
+                    <li>Batch processing basics</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+</body>
+
+</html>

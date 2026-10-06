@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ETL Interview Questions - TTT</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 20px 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .header h1 {
+            margin: 0;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 25px;
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .question-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 15px;
+        }
+
+        .answer-btn {
+            padding: 9px 16px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        .answer-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .answer {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            line-height: 1.6;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>🔄 ETL Interview Questions</h1>
+</div>
+
+<div class="container">
+
+    <a href="/interview-questions" class="back-btn">
+        ← Back to Interview Questions
+    </a>
+
+    <div class="question-card">
+        <div class="question">1. What is ETL?</div>
+
+        <button class="answer-btn" onclick="toggleAnswer('answer1')">
+            Show Answer
+        </button>
+
+        <div class="answer" id="answer1">
+            ETL stands for Extract, Transform and Load. It is a process of
+            extracting data from different sources, transforming or cleaning
+            the data, and loading it into a target system such as a database,
+            data warehouse or data lake.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question">2. What is the difference between ETL and ELT?</div>
+
+        <button class="answer-btn" onclick="toggleAnswer('answer2')">
+            Show Answer
+        </button>
+
+        <div class="answer" id="answer2">
+            In ETL, data is transformed before it is loaded into the target
+            system. In ELT, data is first loaded into the target system and
+            transformations are performed there.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question">3. What is a Data Pipeline?</div>
+
+        <button class="answer-btn" onclick="toggleAnswer('answer3')">
+            Show Answer
+        </button>
+
+        <div class="answer" id="answer3">
+            A data pipeline is a sequence of processes that moves data from
+            source systems to target systems. It can include extraction,
+            transformation, validation, loading and monitoring.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question">4. What is Incremental Data Loading?</div>
+
+        <button class="answer-btn" onclick="toggleAnswer('answer4')">
+            Show Answer
+        </button>
+
+        <div class="answer" id="answer4">
+            Incremental loading means loading only new or changed records
+            instead of loading the complete dataset every time. It reduces
+            processing time and resource usage.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question">5. What is a DAG in Data Engineering?</div>
+
+        <button class="answer-btn" onclick="toggleAnswer('answer5')">
+            Show Answer
+        </button>
+
+        <div class="answer" id="answer5">
+            DAG stands for Directed Acyclic Graph. It represents tasks and
+            their dependencies in a data pipeline. Tools such as Apache
+            Airflow use DAGs to schedule and manage workflows.
+        </div>
+    </div>
+
+    <div class="question-card">
+        <div class="question">6. Why is Data Quality important in ETL pipelines?</div>
+
+        <button class="answer-btn" onclick="toggleAnswer('answer6')">
+            Show Answer
+        </button>
+
+        <div class="answer" id="answer6">
+            Data quality ensures that the data is accurate, complete,
+            consistent and reliable. Good data quality helps prevent incorrect
+            reports, analytics and business decisions.
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function toggleAnswer(answerId) {
+        const answer = document.getElementById(answerId);
+
+        if (answer.style.display === "none" || answer.style.display === "") {
+            answer.style.display = "block";
+        } else {
+            answer.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>

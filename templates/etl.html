@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ETL & Data Pipelines - TTT Interview Management</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f4f7fb;
+            font-family: Arial, sans-serif;
+        }
+
+        .top-header {
+            background: #ffffff;
+            padding: 18px 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .top-header img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .top-header h2 {
+            margin: 0;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .container {
+            max-width: 1100px;
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .page-description {
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .topic-card h4 {
+            color: #2563eb;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .topic-card ul {
+            margin-bottom: 0;
+        }
+
+        .topic-card li {
+            margin-bottom: 8px;
+            color: #475569;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="top-header">
+        <img src="{{ url_for('static', filename='ttt.jpeg') }}" alt="TTT Logo">
+        <h2>TTT INTERVIEW MANAGEMENT</h2>
+    </div>
+
+    <div class="container">
+
+        <a href="/subjects" class="btn btn-primary back-btn">
+            ← Back to Subjects
+        </a>
+
+        <h1 class="page-title">🔄 ETL & Data Pipelines</h1>
+
+        <p class="page-description">
+            ETL and Data Pipeline topics that Data Engineering students should learn.
+        </p>
+
+        <!-- 1 -->
+        <div class="topic-card">
+            <h4>1. ETL Fundamentals</h4>
+            <ul>
+                <li>What is ETL?</li>
+                <li>Extract, Transform and Load</li>
+                <li>ETL vs ELT</li>
+                <li>ETL pipeline architecture</li>
+                <li>Batch processing</li>
+                <li>Real-time processing basics</li>
+            </ul>
+        </div>
+
+        <!-- 2 -->
+        <div class="topic-card">
+            <h4>2. Data Extraction</h4>
+            <ul>
+                <li>Extracting data from databases</li>
+                <li>Extracting data from CSV and JSON files</li>
+                <li>Extracting data from APIs</li>
+                <li>Incremental data extraction</li>
+                <li>Full load vs incremental load</li>
+                <li>Change Data Capture (CDC) basics</li>
+            </ul>
+        </div>
+
+        <!-- 3 -->
+        <div class="topic-card">
+            <h4>3. Data Transformation</h4>
+            <ul>
+                <li>Data cleaning</li>
+                <li>Handling missing values</li>
+                <li>Removing duplicate records</li>
+                <li>Data type conversion</li>
+                <li>Data validation</li>
+                <li>Data aggregation</li>
+                <li>Data joins and transformations</li>
+            </ul>
+        </div>
+
+        <!-- 4 -->
+        <div class="topic-card">
+            <h4>4. Data Loading</h4>
+            <ul>
+                <li>Loading data into databases</li>
+                <li>Loading data into Data Warehouses</li>
+                <li>Loading data into Data Lakes</li>
+                <li>Full load</li>
+                <li>Incremental load</li>
+                <li>Upsert operations</li>
+                <li>Data partitioning basics</li>
+            </ul>
+        </div>
+
+        <!-- 5 -->
+        <div class="topic-card">
+            <h4>5. Data Pipeline Orchestration</h4>
+            <ul>
+                <li>What is workflow orchestration?</li>
+                <li>Pipeline scheduling</li>
+                <li>Pipeline dependencies</li>
+                <li>Task execution</li>
+                <li>Retries and failure handling</li>
+                <li>Apache Airflow basics</li>
+                <li>DAG concepts</li>
+            </ul>
+        </div>
+
+        <!-- 6 -->
+        <div class="topic-card">
+            <h4>6. Data Pipeline Monitoring</h4>
+            <ul>
+                <li>Pipeline logging</li>
+                <li>Error handling</li>
+                <li>Data quality checks</li>
+                <li>Pipeline monitoring</li>
+                <li>Alerts and notifications</li>
+                <li>Pipeline performance</li>
+                <li>Production pipeline best practices</li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>

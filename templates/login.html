@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TTT Interview Management - Login</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f4f7fb;
+        }
+
+        .login-container {
+            width: 400px;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+            text-align: center;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .title {
+            font-size: 26px;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #2563eb;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        .login-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 10px;
+            border-radius: 7px;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <img
+            src="{{ url_for('static', filename='ttt.jpeg') }}"
+            alt="TTT Logo"
+            class="logo"
+        >
+
+        <div class="title">
+            TTT Interview Management
+        </div>
+
+        <div class="subtitle">
+            Login to continue
+        </div>
+
+        {% if error %}
+            <div class="error">
+                {{ error }}
+            </div>
+        {% endif %}
+
+        <form method="POST">
+
+            <div class="input-group">
+                <label>Username</label>
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Enter username"
+                    required
+                >
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <div class="footer">
+            TTT Interview Management System
+        </div>
+
+    </div>
+
+</body>
+</html>
