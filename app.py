@@ -13,7 +13,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 @app.before_request
 def require_login():
 
-    if request.endpoint in ["login", "static"]:
+    if request.endpoint in ["login", "create_profile", "forgot_password", "reset_password", "static"]:
         return
 
     if "logged_in" not in session:
@@ -28,19 +28,156 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
 
-        if username == "admin" and password == "admin123":
+        # Check registered users
+        connection = get_db_connection()
+
+        user = connection.execute("""
+            SELECT * FROM users
+            WHERE (username = ? OR email = ?)
+            AND password = ?
+        """, (username, username, password)).fetchone()
+
+        connection.close()
+
+        # Registered user login
+        if user:
 
             session["logged_in"] = True
+            session["username"] = user["username"]
+            session["full_name"] = user["full_name"]
 
             return redirect("/")
 
+        # Existing admin login
+        if username == "admin" and password == "admin123":
+
+            session["logged_in"] = True
+            session["username"] = "admin"
+            session["full_name"] = "Administrator"
+
+            return redirect("/")
+
+        # Invalid login
         return render_template(
             "login.html",
-            error="Invalid username or password"
+            error="Invalid username/email or password"
         )
 
     return render_template("login.html")
 
+
+@app.route("/create-profile", methods=["GET", "POST"])
+def create_profile():
+
+    if request.method == "POST":
+
+        full_name = request.form["full_name"]
+        email = request.form["email"]
+        username = request.form["username"]
+        password = request.form["password"]
+        confirm_password = request.form["confirm_password"]
+
+        if password != confirm_password:
+            return render_template(
+                "create_profile.html",
+                error="Passwords do not match"
+            )
+
+        connection = get_db_connection()
+
+        try:
+            connection.execute("""
+                INSERT INTO users
+                (full_name, email, username, password)
+                VALUES (?, ?, ?, ?)
+            """, (
+                full_name,
+                email,
+                username,
+                password
+            ))
+
+            connection.commit()
+
+        except sqlite3.IntegrityError:
+            connection.close()
+
+            return render_template(
+                "create_profile.html",
+                error="Username or email already exists"
+            )
+
+        connection.close()
+
+        return redirect("/login")
+
+    return render_template("create_profile.html")
+
+
+@app.route("/forgot-password", methods=["GET", "POST"])
+def forgot_password():
+
+    if request.method == "POST":
+
+        email = request.form["email"]
+
+        connection = get_db_connection()
+
+        user = connection.execute("""
+            SELECT * FROM users
+            WHERE email = ?
+        """, (email,)).fetchone()
+
+        connection.close()
+
+        if not user:
+            return render_template(
+                "forgot_password.html",
+                error="Email address not found"
+            )
+
+        session["reset_email"] = email
+
+        return redirect("/reset-password")
+
+    return render_template("forgot_password.html")
+
+@app.route("/reset-password", methods=["GET", "POST"])
+def reset_password():
+
+    if "reset_email" not in session:
+        return redirect("/forgot-password")
+
+    if request.method == "POST":
+
+        password = request.form["password"]
+        confirm_password = request.form["confirm_password"]
+
+        if password != confirm_password:
+
+            return render_template(
+                "reset_password.html",
+                error="Passwords do not match"
+            )
+
+        email = session["reset_email"]
+
+        connection = get_db_connection()
+
+        connection.execute("""
+            UPDATE users
+            SET password = ?
+            WHERE email = ?
+        """, (password, email))
+
+        connection.commit()
+        connection.close()
+
+        session.pop("reset_email", None)
+
+        return redirect("/login")
+
+    return render_template("reset_password.html")
 
 @app.route("/logout")
 def logout():
@@ -90,6 +227,16 @@ def init_db():
             remarks TEXT,
             FOREIGN KEY (student_id) REFERENCES students(id),
             FOREIGN KEY (company_id) REFERENCES companies(id)
+        )
+    """)
+
+    connection.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            full_name TEXT NOT NULL,
+            email TEXT NOT NULL UNIQUE,
+            username TEXT NOT NULL UNIQUE,
+            password TEXT NOT NULL
         )
     """)
 
