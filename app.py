@@ -55,6 +55,50 @@ def get_db_connection():
     connection.row_factory = sqlite3.Row
     return connection
 
+
+def init_db():
+    connection = get_db_connection()
+
+    connection.execute("""
+        CREATE TABLE IF NOT EXISTS students (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            branch TEXT,
+            batch TEXT,
+            email TEXT,
+            phone TEXT
+        )
+    """)
+
+    connection.execute("""
+        CREATE TABLE IF NOT EXISTS companies (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            company_name TEXT NOT NULL,
+            hr_name TEXT,
+            hr_phone TEXT,
+            hr_email TEXT
+        )
+    """)
+
+    connection.execute("""
+        CREATE TABLE IF NOT EXISTS interviews (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            student_id INTEGER,
+            company_id INTEGER,
+            interview_date TEXT,
+            status TEXT,
+            remarks TEXT,
+            FOREIGN KEY (student_id) REFERENCES students(id),
+            FOREIGN KEY (company_id) REFERENCES companies(id)
+        )
+    """)
+
+    connection.commit()
+    connection.close()
+
+init_db()
+
+
 @app.route("/subjects")
 def subjects():
     return render_template("subjects.html")
@@ -664,7 +708,11 @@ def hr_details():
 
     return render_template("hr_details.html", companies=companies)
 
+
+
+
 if __name__ == "__main__":
+
     app.run(debug=True)
 
 
